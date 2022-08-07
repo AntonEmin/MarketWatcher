@@ -8,11 +8,10 @@ from get_all_futures_markets import getMarkets
 from IPython.display import display 
 from db import log_db
 
-def checkMarkets():
+def checkMarkets(interval):
 
-        markets = getMarkets()                
-        interval = '15m'
-        limit = '50'
+        markets = getMarkets() 
+        limit = 50
         market_dict = {}
         market_dfs = {}
 
@@ -31,15 +30,18 @@ def checkMarkets():
                 market_dfs[key] = pd.DataFrame(market_dict[key] , columns= cols)
                 market_dfs[key]['date'] = pd.to_datetime(market_dfs[key]['time'], unit='ms')
                 market_dfs[key]['rsi'] = ta.rsi(close=market_dfs[key].close,length=14)
-
+                symbol = key
+                price = market_dfs[key]['close'].iloc[-1]
+                rsi = market_dfs[key]['rsi'].iloc[-1]
                 if market_dfs[key]['rsi'].iloc[-1] > 75:
                         #log_db(market_dfs[key].iloc[-1])
-                        send('look at short '+key+' rsi '+str(market_dfs[key]['rsi'].iloc[-1])+' Price '+str(market_dfs[key]['close'].iloc[-1]))
+                        send('look at short %s rsi %s Price %s \n https://ru.tradingview.com/chart/vpjMIYID/?symbol=BINANCE%%3A%sPERP \n https://www.binance.com/uk-UA/futures/%s' %(symbol,rsi,price,symbol,symbol))
                         
 
                 elif market_dfs[key]['rsi'].iloc[-1] < 25:
                         #log_db(market_dfs[key].iloc[-1])
-                        send('look at long '+key+' rsi '+str(market_dfs[key]['rsi'].iloc[-1])+' Price '+str(market_dfs[key]['close'].iloc[-1]))
+                        send('look at long %s rsi %s Price %s \n https://ru.tradingview.com/chart/vpjMIYID/?symbol=BINANCE%%3A%sPERP \n https://www.binance.com/uk-UA/futures/%s' %(symbol,rsi,price,symbol,symbol))
+                        
                         
                                         
         stop = timeit.default_timer()

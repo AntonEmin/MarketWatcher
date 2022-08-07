@@ -5,8 +5,8 @@ def getHistoryCandels(markets,interval,limit):
     
     url = 'https://fapi.binance.com/fapi/v1/klines?symbol='
     market_dict = {}
-    for market in markets:
-        request_res = requests.get(url+market+'&interval='+interval+'&limit='+limit).json()
+    for market in markets:        
+        request_res = requests.get('%s%s&interval=%sm&limit=%s'%(url,market,interval,limit)).json()        
         candels_data = []
         for res in request_res:            
             candels_data.append(

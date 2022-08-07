@@ -5,8 +5,12 @@ from db import init_db
 
 # init_db()
 # checkMarkets()
-schedule.every(15).minutes.at(':00').do(checkMarkets)
-while True:
-    
-    schedule.run_pending()    
-    time.sleep(.1)
+def startShedule(interval):
+    schedule.every(interval).minutes.at(':00').do(checkMarkets, interval = interval)
+
+    while True: 
+        schedule.run_pending()    
+        time.sleep(.1)
+
+if __name__ == '__main__':    
+    startShedule(5)
