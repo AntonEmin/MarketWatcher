@@ -4,24 +4,18 @@ import pandas_ta as ta
 import timeit, time
 from telegram_sender import send
 from getHistory import getHistoryCandels
-from get_all_futures_markets import getMarkets
 from IPython.display import display 
 from db import log_db
 
 def checkMarkets(interval):
-
-        markets = getMarkets() 
+        
         limit = 50
         market_dict = {}
         market_dfs = {}
-
         cols = ['time', 'symbol', 'open', 'high', 'low', 'close', 'volume']
 
-
-
-        market_dict = getHistoryCandels(markets,interval,limit)
-        t = time.localtime()
-        current_time = time.strftime("%H:%M:%S", t)
+        market_dict = getHistoryCandels(interval,limit)        
+        current_time = time.strftime("%H:%M:%S", time.localtime())
         print(current_time)
         start = timeit.default_timer()   
 

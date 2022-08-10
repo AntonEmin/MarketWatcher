@@ -7,7 +7,7 @@ from aiogram.utils import exceptions, executor
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger('broadcast')
 
-API_TOKEN = ""
+API_TOKEN = "5334722726:AAHKpK5s74GdnW5keCeGV-CeL-ZvpRuWfkE"
 
 bot = Bot(token=API_TOKEN, parse_mode=types.ParseMode.HTML)
 dp = Dispatcher(bot)
@@ -42,5 +42,5 @@ async def send_message(user_id: int, text: str, disable_notification: bool = Fal
 
 
 def send(message):
-    executor.start(dp,send_message(, message))
+    executor.start(dp,send_message(417592433, message))
 

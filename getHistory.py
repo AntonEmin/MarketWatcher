@@ -1,8 +1,9 @@
 import requests
+from get_all_futures_markets import getMarkets
 
-
-def getHistoryCandels(markets,interval,limit):
+def getHistoryCandels(interval,limit):
     
+    markets = getMarkets() 
     url = 'https://fapi.binance.com/fapi/v1/klines?symbol='
     market_dict = {}
     for market in markets:        
