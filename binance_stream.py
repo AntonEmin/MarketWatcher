@@ -29,12 +29,12 @@ def checkMarkets(interval):
                 rsi = market_dfs[key]['rsi'].iloc[-1]
                 if market_dfs[key]['rsi'].iloc[-1] > 75:
                         #log_db(market_dfs[key].iloc[-1])
-                        send('timeframe %s look at short %s rsi %s Price %s \n https://ru.tradingview.com/chart/vpjMIYID/?symbol=BINANCE%%3A%sPERP \n https://www.binance.com/uk-UA/futures/%s' %(interval,symbol,rsi,price,symbol,symbol))
+                        send('timeframe %s look at short %s rsi %s Price %s \n https://ru.tradingview.com/chart/vpjMIYID/?symbol=BINANCE%%3A%sPERP'%(interval,symbol,rsi,price,symbol))# \n https://www.binance.com/uk-UA/futures/%s' %(interval,symbol,rsi,price,symbol,symbol))
                         
 
                 elif market_dfs[key]['rsi'].iloc[-1] < 25:
                         #log_db(market_dfs[key].iloc[-1])
-                        send('timeframe %s look at long %s rsi %s Price %s \n https://ru.tradingview.com/chart/vpjMIYID/?symbol=BINANCE%%3A%sPERP \n https://www.binance.com/uk-UA/futures/%s' %(interval,symbol,rsi,price,symbol,symbol))
+                        send('timeframe %s look at long %s rsi %s Price %s \n https://ru.tradingview.com/chart/vpjMIYID/?symbol=BINANCE%%3A%sPERP' %(interval,symbol,rsi,price,symbol)) #\n https://www.binance.com/uk-UA/futures/%s' %(interval,symbol,rsi,price,symbol,symbol))
                         
                         
                                         
